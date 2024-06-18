@@ -3,6 +3,9 @@
 <head>
   <!--<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />-->
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <py-config>
+    packages = ['js']
+  </py-config>
 </head>
 <body>
   <div>Дата сегодня:<u><label id='time'></label></u></div>
@@ -16,16 +19,15 @@
   <div id="output"></div>
 <py-script>
   from datetime import datetime
-  import urllib.request
-  from js import console
-  for line in urllib.request.urlopen("https://raw.githubusercontent.com/retnrernet/counter.github.io/main/out.txt"):Element('output').element.innerText = line.decode('utf-8')
+  from js import document, console, Object
+  import asyncio,json
+  response = await js.axios.get("https://raw.githubusercontent.com/retnrernet/counter.github.io/main/out.txt")
+  Element('output').element.innerText = response.data
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
-  Element('output').element.innerText = rows_array
   def my_function(*args, **kwargs):
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
-		Element('test-output').element.innerText = "OK"
 </py-script>
   </body>
 </html>
