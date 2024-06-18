@@ -20,15 +20,15 @@
   import js, asyncio,json
   from js import document, console, Object
   from os import path, getcwd
-  #response = await js.axios.get("https://raw.githubusercontent.com/retnrernet/counter.github.io/main/out.txt")
-  #Element('output').element.innerText = response.data
+  response = await js.axios.get("https://raw.githubusercontent.com/retnrernet/counter.github.io/main/out.txt")
+  Element('output').element.innerText = response.data
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
   def my_function(*args, **kwargs):
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
     with open("./out.txt", "w", newline="\n", encoding="utf-8") as f: f.write(text+","+text1)
-    Element('output').element.innerText = text,text1
+    #Element('output').element.innerText = text,text1
 </py-script>
   </body>
 </html>
