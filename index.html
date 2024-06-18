@@ -7,12 +7,15 @@
 </head>
 <body>
   <div>Дата сегодня:<u><label id='time'></label></u></div>
+  <br>
   <div>Введите название изделия или выберите из списка</div>
   <input type="name" id="test-input"/>
   <div>Введите количество</div>
   <input type="num" id="test-input1"/>
   <div>Цена такая же<input id="price" type="checkbox" checked></div>
+  <br>
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button>
+  <br>
   <div>Ранее:</div>
   <div id="output"></div>
 <py-script>
@@ -25,7 +28,7 @@
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
   try:Element('output').element.innerText = js.sessionStorage.getItem("ss")
-  else:pass
+  except:pass
   def my_function(*args, **kwargs):
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
