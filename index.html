@@ -28,9 +28,8 @@
   def my_function(*args, **kwargs):
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
-    for line in filedata:file.writerow([text,text1])
 		Element('test-output').element.innerText = "OK"
-		with open('out.xls', 'a') as file:file.write('Custom String\n');df.to_csv(file, header=False, index=False)
+		with open('out.xls', 'a') as file:file.write([text,text1]);df.to_csv(file, header=False, index=False)
 		df = pd.read_csv(csv_file)
 		rows_array = df.values.tolist()
 </py-script>
