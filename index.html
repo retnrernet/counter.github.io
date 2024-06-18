@@ -6,22 +6,33 @@
 </head>
 <body>
   <div>Дата сегодня:<u><label id='time'></label></u></div>
-  <div>Введите название изделия</div>
+  <div>Введите название изделия или выберите из списка</div>
   <input type="name" id="test-input"/>
   <div>Введите количество</div>
   <input type="num" id="test-input1"/>
   <div>Цена такая же<input id="price" type="checkbox" checked></div>
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button>
   <div id="test-output"></div>
+  <div id="output"></div>
 <py-script>
   from datetime import datetime
+  from js import document
+  import pandas as pd
+	#headers=["название","количество","дата"]
   now = datetime.now()
-  Element('time').element.innerText = now.strftime("%m/%d/%Y")
+  Element('time').element.innerText = now.strftime("%d/%m/%Y")
+  Element('output').element.innerText = rows_array
   from js import console
   def my_function(*args, **kwargs):
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
-    Element('test-output').element.innerText = text+text1
+    for line in filedata:
+		  if line.count(";")==1:
+		  	file.writerow([text,text1)
+		Element('test-output').element.innerText = "OK"
+		with open('out.xls', 'a') as file:file.write('Custom String\n');df.to_csv(file, header=False, index=False)
+		df = pd.read_csv(csv_file)
+		rows_array = df.values.tolist()
 </py-script>
   </body>
 </html>
