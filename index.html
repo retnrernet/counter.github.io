@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Worker McWorkface</title>
-
-    <!-- Recommended meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-    <!-- PyScript CSS -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2023.12.1/core.css">
-
-    <!-- This script tag bootstraps PyScript -->
-    <script type="module" src="https://pyscript.net/releases/2023.12.1/core.js"></script>
+  <!--<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />-->
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 </head>
 <body>
-    <script type="mpy" src="./main.py" worker></script>
-    <input type="range" min="1" max="100" value="50">
-    <h1 id="counter"></h1>
-</body>
+  <div>Введите название изделия</div>
+  <input type="text" id="test-input"/>
+  <button id="submit-button" type="submit" pys-onClick="my_function">OK</button>
+  <div id="test-output"></div>
+<py-script>
+from js import console
+def my_function(*args, **kwargs):
+    #print('args:', args)
+    #print('kwargs:', kwargs)
+    console.log(f'args: {args}')
+    console.log(f'kwargs: {kwargs}')
+    text = Element('test-input').element.value
+    #print('text:', text)
+    console.log(f'text: {text}')
+    Element('test-output').element.innerText = text
+</py-script>
+  </body>
 </html>
