@@ -53,9 +53,10 @@
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
     js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
-    js.sessionStorage.setItem("full", str(int(num)*float(price)))
+    #js.sessionStorage.setItem("full", str(int(num)*float(price)))
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
-    Element('full').element.innerText = int(js.sessionStorage.getItem("full"))+str(int(num)*float(price))
+    js.sessionStorage.setItem("full", float(js.sessionStorage.getItem("full"))+(int(num)*float(price)))
+    Element('full').element.innerText = js.sessionStorage.getItem("full")
     #sessionStorage.removeItem('username')
 </py-script>
   </body>
