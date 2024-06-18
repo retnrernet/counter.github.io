@@ -9,22 +9,22 @@
   <div>Дата сегодня:<u><label id='time'></label></u></div><br>
   <div>Введите название изделия или выберите из списка</div>
   <select name="izdelia" id="izdelia">
-    <option value="kombez">Комбез</option>
-    <option value="yubka">Юбка</option>
-    <option value="losini">Лосины</option>
-    <option value="leggins">Леггинсы</option>
-    <option value="plat">Платье</option>
-    <option value="rash">Рашгард</option>
-    <option value="vod">Водолазка</option>
-    <option value="short">Шорты</option>
-    <option value="fut">Футболка</option>
-    <option value="top">Топ</option>
-    <option value="kup">Купальник</option>
-    <option value="bryuki">Брюки</option>
-    <option value="bust">Бюстгалтер</option>
-    <option value="trus">Трусы</option>
-    <option value="saraf">Сарафан</option>
-    <option value="body">Боди</option>
+    <option value="Комбез">Комбез</option>
+    <option value="Юбка">Юбка</option>
+    <option value="Лосины">Лосины</option>
+    <option value="Леггинсы">Леггинсы</option>
+    <option value="Платье">Платье</option>
+    <option value="Рашгард">Рашгард</option>
+    <option value="Водолазка">Водолазка</option>
+    <option value="Шорты">Шорты</option>
+    <option value="Футболка">Футболка</option>
+    <option value="Топ">Топ</option>
+    <option value="Купальник">Купальник</option>
+    <option value="Брюки">Брюки</option>
+    <option value="Бюстгалтер">Бюстгалтер</option>
+    <option value="Трусы">Трусы</option>
+    <option value="Сарафа">Сарафан</option>
+    <option value="Боди">Боди</option>
   </select>
   <input type="name" id="name"/>
   <div>Введите количество</div>
@@ -52,7 +52,7 @@
     num = Element('num').element.value
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
-    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*int(price)))
+    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price)))
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
     #sessionStorage.removeItem('username')
 </py-script>
