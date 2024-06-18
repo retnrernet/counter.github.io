@@ -32,7 +32,7 @@
   def my_function(*args, **kwargs):
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
-    js.sessionStorage.setItem("ss", text+text1)
+    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+text+text1)
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
 </py-script>
   </body>
