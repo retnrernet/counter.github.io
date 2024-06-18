@@ -23,26 +23,24 @@
     <option value="Брюки">Брюки</option>
     <option value="Бюстгалтер">Бюстгалтер</option>
     <option value="Трусы">Трусы</option>
-    <option value="Сарафа">Сарафан</option>
+    <option value="Сарафан">Сарафан</option>
     <option value="Боди">Боди</option>
   </select>
   <select name="operation" id="operation">
-    <option value="Комбез">Комбез</option>
-    <option value="Юбка">Юбка</option>
-    <option value="Лосины">Лосины</option>
-    <option value="Леггинсы">Леггинсы</option>
-    <option value="Платье">Платье</option>
-    <option value="Рашгард">Рашгард</option>
-    <option value="Водолазка">Водолазка</option>
-    <option value="Шорты">Шорты</option>
-    <option value="Футболка">Футболка</option>
-    <option value="Топ">Топ</option>
-    <option value="Купальник">Купальник</option>
-    <option value="Брюки">Брюки</option>
-    <option value="Бюстгалтер">Бюстгалтер</option>
-    <option value="Трусы">Трусы</option>
-    <option value="Сарафа">Сарафан</option>
-    <option value="Боди">Боди</option>
+    <option value="Обметать бок срезы">Обметать бок срезы</option>
+    <option value="Вывести концы нитей">Юбка</option>
+    <option value="Стачать эластичную ленту">Лосины</option>
+    <option value="Разложить припуск шва">Леггинсы</option>
+    <option value="Наметить место размерника">Платье</option>
+    <option value="Настрочить размерник">Рашгард</option>
+    <option value="Приложить отделочную строчку">Водолазка</option>
+    <option value="Наметить контрольные точки">Шорты</option>
+    <option value="Настрочить фирмичку">Футболка</option>
+    <option value="Закрепить верхнюю часть">Топ</option>
+    <option value="Притачать составник">Купальник</option>
+    <option value="Поставить П-образные закрепки">Брюки</option>
+    <option value="Скрепить деталь полочки верха">Бюстгалтер</option>
+    <option value="Вложить боковые среды">Трусы</option>
   </select>
   <input type="name" id="name"/>
   <div>Введите количество</div>
@@ -70,7 +68,8 @@
     num = Element('num').element.value
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
-    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
+    try:js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
+    except:js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
     #js.sessionStorage.setItem("full", str(int(num)*float(price)))
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
     js.sessionStorage.setItem("full", float(js.sessionStorage.getItem("full"))+(int(num)*float(price)))
