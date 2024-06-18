@@ -3,6 +3,9 @@
 <head>
   <!--<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />-->
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <py-config>
+    packages = ['pandas', 'js']
+  </py-config>
 </head>
 <body>
   <div>Дата сегодня:<u><label id='time'></label></u></div>
@@ -18,7 +21,6 @@
   from datetime import datetime
   from js import document
   import pandas as pd
-	#headers=["название","количество","дата"]
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
   Element('output').element.innerText = rows_array
@@ -26,9 +28,7 @@
   def my_function(*args, **kwargs):
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
-    for line in filedata:
-		  if line.count(";")==1:
-		  	file.writerow([text,text1)
+    for line in filedata:file.writerow([text,text1])
 		Element('test-output').element.innerText = "OK"
 		with open('out.xls', 'a') as file:file.write('Custom String\n');df.to_csv(file, header=False, index=False)
 		df = pd.read_csv(csv_file)
