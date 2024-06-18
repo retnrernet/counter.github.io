@@ -9,7 +9,7 @@
   <div>Дата сегодня:<u><label id='time'></label></u></div><br>
   <div>Введите название изделия и тип операции или выберите из списка</div>
   <select name="izdelia" id="izdelia">
-    <option value="Комбез">Комбез</option>
+    <option value="Комбинезон">Комбез</option>
     <option value="Юбка">Юбка</option>
     <option value="Лосины">Лосины</option>
     <option value="Леггинсы">Леггинсы</option>
@@ -68,8 +68,8 @@
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
     operation= Element('operation').element.value
-    try:js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
-    except:js.sessionStorage.setItem("ss",izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
+    try:js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+operation+"+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
+    except:js.sessionStorage.setItem("ss",izdelia+","+operation+"+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
     try:js.sessionStorage.setItem("full", float(js.sessionStorage.getItem("full"))+(int(num)*float(price)))
     except:js.sessionStorage.setItem("full", int(num)*float(price))
