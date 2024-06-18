@@ -22,11 +22,11 @@
     <option value="bust">Бюстгалтер</option>
     <option value="trus">Трусы</option>
   </select>
-  <input type="name" id="test-input"/>
+  <input type="name" id="name"/>
   <div>Введите количество</div>
-  <input type="num" id="test-input1"/>
+  <input type="num" id="num"/>
   <div>Введите стоимость за единицу (в формате 0.5 или 5)</div>
-  <input type="price" id="test-input1"/>
+  <input type="price" id="price"/>
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button><br><br>
   <div>Ранее:</div><br>
   <div id="output"></div><br>
@@ -46,10 +46,11 @@
   try:Element('output').element.innerText = js.sessionStorage.getItem("ss")
   except:pass
   def my_function(*args, **kwargs):
-    text = Element('test-input').element.value
-    text1 = Element('test-input1').element.value
-    text2 = Element('izdelia').element.value
-    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+text2+","+text+","+text1+","+now.strftime("%d/%m/%Y")+","+str(int(text1*price)))
+    name = Element('name').element.value
+    num = Element('num').element.value
+    price = Element('price').element.value
+    izdelia= Element('izdelia').element.value
+    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num*price)))
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
     #sessionStorage.removeItem('username')
 </py-script>
