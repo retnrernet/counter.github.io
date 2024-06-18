@@ -68,8 +68,8 @@
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
     operation= Element('operation').element.value
-    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+","+operation+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
-    except:js.localStorage.setItem("ss",izdelia+","+operation+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
+    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+","+operation+","+name+","+num+","+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
+    except:js.localStorage.setItem("ss",izdelia+","+operation+","+name+","+num+","+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     Element('output').element.innerText = js.localStorage.getItem("ss")
     try:js.localStorage.setItem("full", float(js.localStorage.getItem("full"))+(int(num)*float(price)))
     except:js.localStorage.setItem("full", int(num)*float(price))
