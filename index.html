@@ -29,7 +29,7 @@
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
     with open("./out.txt", "w", newline="\n", encoding="utf-8") as f: f.write(text+","+text1)
-    Element('output').element.innerText = data
+    Element('output').element.innerText = text,text1
 </py-script>
   </body>
 </html>
