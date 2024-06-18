@@ -5,21 +5,23 @@
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 </head>
 <body>
+  <div>Дата сегодня:<u><label id='time'></label></u></div>
   <div>Введите название изделия</div>
-  <input type="text" id="test-input"/>
+  <input type="name" id="test-input"/>
+  <div>Введите количество</div>
+  <input type="num" id="test-input1"/>
+  <div>Цена такая же<input id="price" type="checkbox" checked></div>
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button>
   <div id="test-output"></div>
 <py-script>
-from js import console
-def my_function(*args, **kwargs):
-    #print('args:', args)
-    #print('kwargs:', kwargs)
-    console.log(f'args: {args}')
-    console.log(f'kwargs: {kwargs}')
+  from datetime import datetime
+  now = datetime.now()
+  Element('time').element.innerText = now.strftime("%m/%d/%Y")
+  from js import console
+  def my_function(*args, **kwargs):
     text = Element('test-input').element.value
-    #print('text:', text)
-    console.log(f'text: {text}')
-    Element('test-output').element.innerText = text
+    text1 = Element('test-input1').element.value
+    Element('test-output').element.innerText = text+text1
 </py-script>
   </body>
 </html>
