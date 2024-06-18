@@ -3,6 +3,7 @@
 <head>
   <!--<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />-->
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <py-config>
     packages = ['js']
   </py-config>
@@ -15,10 +16,11 @@
   <input type="num" id="test-input1"/>
   <div>Цена такая же<input id="price" type="checkbox" checked></div>
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button>
-  <div id="test-output"></div>
+  <div>Ранее:</div>
   <div id="output"></div>
 <py-script>
   from datetime import datetime
+  import js
   from js import document, console, Object
   import asyncio,json
   response = await js.axios.get("https://raw.githubusercontent.com/retnrernet/counter.github.io/main/out.txt")
