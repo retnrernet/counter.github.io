@@ -34,7 +34,7 @@
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button><br><br>
   <div>Ранее:</div><br>
   <div id="output"></div><br>
-  <div>Всего заработано:</div><br>
+  <div>Всего заработано в рублях:</div><br>
   <div id="full"></div>
 <py-script>
   from datetime import datetime
@@ -52,8 +52,10 @@
     num = Element('num').element.value
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
-    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price)))
+    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
+    js.sessionStorage.setItem("full", str(int(num)*float(price)))
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
+    Element('full').element.innerText = int(js.sessionStorage.getItem("full"))+str(int(num)*float(price))
     #sessionStorage.removeItem('username')
 </py-script>
   </body>
