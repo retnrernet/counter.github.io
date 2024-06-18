@@ -6,18 +6,34 @@
   <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <div>Дата сегодня:<u><label id='time'></label></u></div>
-  <br>
+  <div>Дата сегодня:<u><label id='time'></label></u></div><br>
   <div>Введите название изделия или выберите из списка</div>
+  <select name="izdelia" id="izdelia">
+    <option value="kombez">Комбез</option>
+    <option value="yubka">Юбка</option>
+    <option value="losini">Лосины</option>
+    <option value="leggins">Леггинсы</option>
+    <option value="plat">Платье</option>
+    <option value="short">Шорты</option>
+    <option value="fut">Футболка</option>
+    <option value="top">Топ</option>
+    <option value="kup">Купальник</option>
+    <option value="bryuki">Боюки</option>
+    <option value="bust">Бюстгалтер</option>
+    <option value="trus">Трусы</option>
+  </select>
   <input type="name" id="test-input"/>
   <div>Введите количество</div>
   <input type="num" id="test-input1"/>
-  <div>Цена такая же<input id="price" type="checkbox" checked></div>
-  <br>
-  <button id="submit-button" type="submit" pys-onClick="my_function">OK</button>
-  <br>
-  <div>Ранее:</div>
-  <div id="output"></div>
+  <div>Введите стоимость за единицу (в формате 0.5 или 5)</div>
+  <input type="price" id="test-input1"/>
+  <button id="submit-button" type="submit" pys-onClick="my_function">OK</button><br><br>
+  <div>Ранее:</div><br>
+  <div id="output"></div><br>
+  <div>Заработано за день:</div><br>
+  <div id="day"></div><br>
+  <div>Всего заработано:</div><br>
+  <div id="full"></div>
 <py-script>
   from datetime import datetime
   import js, asyncio,json
@@ -32,8 +48,10 @@
   def my_function(*args, **kwargs):
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
-    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+text+text1)
+    text2 = Element('izdelia').element.value
+    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+text2+","+text+","+text1+","+now.strftime("%d/%m/%Y")+","+str(int(text1*price)))
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
+    #sessionStorage.removeItem('username')
 </py-script>
   </body>
 </html>
