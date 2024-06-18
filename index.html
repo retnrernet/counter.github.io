@@ -14,13 +14,17 @@
     <option value="losini">Лосины</option>
     <option value="leggins">Леггинсы</option>
     <option value="plat">Платье</option>
+    <option value="rash">Рашгард</option>
+    <option value="vod">Водолазка</option>
     <option value="short">Шорты</option>
     <option value="fut">Футболка</option>
     <option value="top">Топ</option>
     <option value="kup">Купальник</option>
-    <option value="bryuki">Боюки</option>
+    <option value="bryuki">Брюки</option>
     <option value="bust">Бюстгалтер</option>
     <option value="trus">Трусы</option>
+    <option value="saraf">Сарафан</option>
+    <option value="body">Боди</option>
   </select>
   <input type="name" id="name"/>
   <div>Введите количество</div>
@@ -30,8 +34,6 @@
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button><br><br>
   <div>Ранее:</div><br>
   <div id="output"></div><br>
-  <div>Заработано за день:</div><br>
-  <div id="day"></div><br>
   <div>Всего заработано:</div><br>
   <div id="full"></div>
 <py-script>
@@ -50,7 +52,7 @@
     num = Element('num').element.value
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
-    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num*price)))
+    js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*int(price)))
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
     #sessionStorage.removeItem('username')
 </py-script>
