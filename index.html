@@ -19,6 +19,7 @@
     <option value="Шорты">Шорты</option>
     <option value="Футболка">Футболка</option>
     <option value="Топ">Топ</option>
+    <option value="Велосипедка">Велосипедка</option>
     <option value="Купальник">Купальник</option>
     <option value="Брюки">Брюки</option>
     <option value="Бюстгалтер">Бюстгалтер</option>
@@ -53,7 +54,36 @@
   <div>Ранее:</div><br>
   <div id="output"></div><br>
   <div>Всего заработано в рублях:</div><br>
-  <div id="full"></div>
+  <div id="full"></div><br><br><br>
+  <div>Подсчет финальный</div>
+  <input type="1" id="c1" value="1"/><input type="p1" id="p1"/>
+  <input type="2" id="c2" value="2"/><input type="p2" id="p2"/>
+  <input type="3" id="c3" value="3"/><input type="p3" id="p3"/>
+  <input type="4" id="c4" value="4"/><input type="p4" id="p4"/>
+  <input type="5" id="c5" value="5"/><input type="p5" id="p5"/>
+  <input type="6" id="c6" value="6"/><input type="p6" id="p6"/>
+  <input type="7" id="c7" value="7"/><input type="p7" id="p7"/>
+  <input type="8" id="c8" value="8"/><input type="p8" id="p8"/>
+  <input type="9" id="c9" value="9"/><input type="p9" id="p9"/>
+  <input type="10" id="c10" value="10"/><input type="p10" id="p10"/>
+  <input type="11" id="c11" value="11"/><input type="p11" id="p11"/>
+  <input type="12" id="c12" value="12"/><input type="p12" id="p12"/>
+  <input type="13" id="c13" value="13"/><input type="p13" id="p13"/>
+  <input type="14" id="c14" value="14"/><input type="p14" id="p14"/>
+  <input type="15" id="c15" value="15"/><input type="p15" id="p15"/>
+  <input type="16" id="c16" value="16"/><input type="p16" id="p16"/>
+  <input type="17" id="c17" value="17"/><input type="p17" id="p17"/>
+  <input type="18" id="c18" value="18"/><input type="p18" id="p18"/>
+  <input type="19" id="c19" value="19"/><input type="p19" id="p19"/>
+  <input type="20" id="c20" value="20"/><input type="p20" id="p20"/>
+  <input type="21" id="c21" value="21"/><input type="p21" id="p21"/>
+  <input type="22" id="c22" value="22"/><input type="p22" id="p22"/>
+  <input type="23" id="c23" value="23"/><input type="p23" id="p23"/>
+  <input type="24" id="c24" value="24"/><input type="p24" id="p24"/>
+  <input type="25" id="c25" value="25"/><input type="p25" id="p25"/>
+  <input type="26" id="c26" value="26"/><input type="p26" id="p26"/>
+  <button id="submit-button1" type="submit" pys-onClick="count">Подсчет</button><br>
+  <div id="counter"></div>
 <py-script>
   from datetime import datetime;import js, asyncio,json;from js import document, console, Object;from os import path, getcwd
   #response = await js.axios.get("https://raw.githubusercontent.com/retnrernet/counter.github.io/main/out.txt")
@@ -75,6 +105,34 @@
     except:js.localStorage.setItem("full", int(num)*float(price))
     Element('full').element.innerText = js.localStorage.getItem("full")
     #sessionStorage.removeItem('username')
+  def count(*args, **kwargs):
+    a1 = int(Element('c1').element.value)*int(Element('p1').element.value)
+    a2 = int(Element('c2').element.value)*int(Element('p2').element.value)
+    a3 = int(Element('c3').element.value)*int(Element('p3').element.value)
+    a4 = int(Element('c4').element.value)*int(Element('p4').element.value)
+    a5 = int(Element('c5').element.value)*int(Element('p5').element.value)
+    a6 = int(Element('c6').element.value)*int(Element('p6').element.value)
+    a7 = int(Element('c7').element.value)*int(Element('p7').element.value)
+    a8 = int(Element('c8').element.value)*int(Element('p8').element.value)
+    a9 = int(Element('c9').element.value)*int(Element('p9').element.value)
+    a10 = int(Element('c10').element.value)*int(Element('p10').element.value)
+    a11 = int(Element('c11').element.value)*int(Element('p11').element.value)
+    a12 = int(Element('c12').element.value)*int(Element('p12').element.value)
+    a13 = int(Element('c13').element.value)*int(Element('p13').element.value)
+    a14 = int(Element('c14').element.value)*int(Element('p14').element.value)
+    a15 = int(Element('c15').element.value)*int(Element('p15').element.value)
+    a16 = int(Element('c16').element.value)*int(Element('p16').element.value)
+    a17 = int(Element('c17').element.value)*int(Element('p17').element.value)
+    a18 = int(Element('c18').element.value)*int(Element('p18').element.value)
+    a19 = int(Element('c19').element.value)*int(Element('p19').element.value)
+    a20 = int(Element('c20').element.value)*int(Element('p20').element.value)
+    a21 = int(Element('c21').element.value)*int(Element('p21').element.value)
+    a22 = int(Element('c22').element.value)*int(Element('p22').element.value)
+    a23 = int(Element('c23').element.value)*int(Element('p23').element.value)
+    a24 = int(Element('c24').element.value)*int(Element('p24').element.value)
+    a25 = int(Element('c25').element.value)*int(Element('p25').element.value)
+    a26 = int(Element('c26').element.value)*int(Element('p26').element.value)
+    Element('counter').element.innerText = str(int(a1+a2+a3+a4+a5+a6+a7+a8+a9+a10+a11+a12+a13+a14+a15+a16+a17+a18+a19+a20+a21+a22+a23+a24+a25+a26))
 </py-script>
   </body>
 </html>
