@@ -27,7 +27,7 @@
     <option value="Боди">Боди</option>
   </select>
   <select name="operation" id="operation">
-    <option value="Обметать бок срезы">Обметать бок срезы</option>
+    <option value="Обметать боковые срезы">Обметать бок срезы</option>
     <option value="Вывести концы нитей">Юбка</option>
     <option value="Стачать эластичную ленту">Лосины</option>
     <option value="Разложить припуск шва">Леггинсы</option>
@@ -53,26 +53,24 @@
   <div>Всего заработано в рублях:</div><br>
   <div id="full"></div>
 <py-script>
-  from datetime import datetime
-  import js, asyncio,json
-  from js import document, console, Object
-  from os import path, getcwd
+  from datetime import datetime;import js, asyncio,json;from js import document, console, Object;from os import path, getcwd
   #response = await js.axios.get("https://raw.githubusercontent.com/retnrernet/counter.github.io/main/out.txt")
   #Element('output').element.innerText = response.data
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
-  try:Element('output').element.innerText = js.sessionStorage.getItem("ss")
+  try:Element('output').element.innerText = js.sessionStorage.getItem("ss");Element('full').element.innerText = js.sessionStorage.getItem("full")
   except:pass
   def my_function(*args, **kwargs):
     name = Element('name').element.value
     num = Element('num').element.value
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
+    operation= Element('operation').element.value
     try:js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
-    except:js.sessionStorage.setItem("ss", js.sessionStorage.getItem("ss")+"\n"+izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
-    #js.sessionStorage.setItem("full", str(int(num)*float(price)))
+    except:js.sessionStorage.setItem("ss",izdelia+","+name+","+num+","+now.strftime("%d/%m/%Y")+","+str(int(num)*float(price))+" руб. итоговая выручка")
     Element('output').element.innerText = js.sessionStorage.getItem("ss")
-    js.sessionStorage.setItem("full", float(js.sessionStorage.getItem("full"))+(int(num)*float(price)))
+    try:js.sessionStorage.setItem("full", float(js.sessionStorage.getItem("full"))+(int(num)*float(price)))
+    except:js.sessionStorage.setItem("full", int(num)*float(price))
     Element('full').element.innerText = js.sessionStorage.getItem("full")
     #sessionStorage.removeItem('username')
 </py-script>
