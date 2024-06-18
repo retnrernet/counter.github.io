@@ -3,9 +3,6 @@
 <head>
   <!--<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />-->
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-  <py-config>
-    packages = ['pandas', 'js']
-  </py-config>
 </head>
 <body>
   <div>Дата сегодня:<u><label id='time'></label></u></div>
@@ -19,19 +16,16 @@
   <div id="output"></div>
 <py-script>
   from datetime import datetime
-  from js import document
-  import pandas as pd
+  import urllib.request
+  from js import console
+  for line in urllib.request.urlopen("https://raw.githubusercontent.com/retnrernet/counter.github.io/main/out.txt"):Element('output').element.innerText = line.decode('utf-8')
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
   Element('output').element.innerText = rows_array
-  from js import console
   def my_function(*args, **kwargs):
     text = Element('test-input').element.value
     text1 = Element('test-input1').element.value
 		Element('test-output').element.innerText = "OK"
-		with open('out.xls', 'a') as file:file.write([text,text1]);df.to_csv(file, header=False, index=False)
-		df = pd.read_csv(csv_file)
-		rows_array = df.values.tolist()
 </py-script>
   </body>
 </html>
