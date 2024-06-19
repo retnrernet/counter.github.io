@@ -85,7 +85,7 @@
   <button id="submit-button1" type="submit" pys-onClick="count">Подсчет</button><br>
   <div id="counter"></div>
 <py-script>
-  from datetime import datetime
+  from datetime import datetime;import js
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
   try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full")
