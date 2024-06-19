@@ -4,7 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <div>Дата сегодня:<u><label id='time'></label></u></div><br>
@@ -86,9 +85,7 @@
   <button id="submit-button1" type="submit" pys-onClick="count">Подсчет</button><br>
   <div id="counter"></div>
 <py-script>
-  from datetime import datetime;import js, asyncio,json;from js import document, console, Object;from os import path, getcwd
-  #response = await js.axios.get("https://raw.githubusercontent.com/retnrernet/counter.github.io/main/out.txt")
-  #Element('output').element.innerText = response.data
+  from datetime import datetime
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
   try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full")
