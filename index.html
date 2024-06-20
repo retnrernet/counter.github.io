@@ -82,8 +82,12 @@
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
   try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive")
   except:pass
-  Counter = Counter(js.localStorage.getItem("ss").split()) 
-  Element('sewed').element.innerText = Counter.most_common(4)[0]
+  try:
+    txt=''.join([i for i in js.localStorage.getItem("ss").splitlines() if not i.isdigit()])
+    print(txt)
+    Counter = Counter(txt)
+    Element('sewed').element.innerText = Counter.most_common(4)
+  except:pass
   def ocr(*args, **kwargs):
     if js.localStorage.getItem("ss").split() in Element('text').element.value.split():Element('ocr').element.innerText = "найдено совпадение"
     else: Element('ocr').element.innerText = "не найдено совпадение"
