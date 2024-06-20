@@ -85,7 +85,7 @@
   try:
     #txt=''.join([i for i in js.localStorage.getItem("ss").splitlines() if not i.isdigit()])
     Counter = Counter(js.localStorage.getItem("ss").split())
-    Element('top').element.innerText = Counter.most_common(4)[0]
+    Element('top').element.innerText = Counter.most_common(4)[1,2]
   except:pass
   def ocr(*args, **kwargs):
     if js.localStorage.getItem("ss").split() in Element('text').element.value.split():Element('ocr').element.innerText = "найдено совпадение"
