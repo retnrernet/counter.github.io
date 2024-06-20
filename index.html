@@ -94,10 +94,10 @@
     #        js.localStorage.setItem("ss",js.localStorage.getItem("ss").replace(line, final))
     #  else:
     #    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
-    #    except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+", расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
+    #    except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     #except:
     try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
-    except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+", расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
+    except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     Element('output').element.innerText = js.localStorage.getItem("ss")
     try:js.localStorage.setItem("full", float(js.localStorage.getItem("full"))+(int(num)*float(price)))
     except:js.localStorage.setItem("full", int(num)*float(price))
