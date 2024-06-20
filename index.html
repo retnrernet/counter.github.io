@@ -80,10 +80,9 @@
   from datetime import datetime;import js;from js import document, console,URL, Uint8Array, window, File, Object;from collections import Counter
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
-  try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive")
+  try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('sewed').element.innerText = js.localStorage.getItem("sewed");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive")
   except:pass
   try:
-    #txt=''.join([i for i in js.localStorage.getItem("ss").splitlines() if not i.isdigit()])
     Counter = Counter(js.localStorage.getItem("ss").split())
     Element('top').element.innerText = Counter.most_common(2)
   except:pass
@@ -111,6 +110,9 @@
     #    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     #    except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     #except:
+    try:js.localStorage.setItem("sewed",str(int(js.localStorage.getItem("sewed")+int(num))))
+    except:js.localStorage.setItem("sewed",num)
+    Element('sewed').element.innerText = js.localStorage.getItem("sewed")
     try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     Element('output').element.innerText = js.localStorage.getItem("ss")
