@@ -95,7 +95,7 @@
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
     operation= Element('operation').element.value
-    try:js.localStorage.setItem("sewed",str(int(num)+int(js.localStorage.getItem("sewed")))))
+    try:js.localStorage.setItem("sewed",str(int(num)+int(js.localStorage.getItem("sewed"))))
     except:js.localStorage.setItem("sewed",num)
     Element('sewed').element.innerText = js.localStorage.getItem("sewed")
     try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
