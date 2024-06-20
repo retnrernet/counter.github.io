@@ -85,13 +85,11 @@
       lines=js.localStorage.getItem("ss").splitlines()
       for line in lines:
         if line.startswith(izdelia+", "+operation):
-          text=line.replace(",","").replace(".0","").split()
-          #text3=text2.replace(",","").replace(".0","").split()
+          text=line.replace(",","").replace(".0","")
           nums=[(c) for i,c in enumerate(text) if c.isdigit()]
-          #nums1=[(c) for i,c in enumerate(text3) if c.isdigit()]
-          n1=int(nums[0])+int(int(num)*float(price))
-          n2=int(nums[2])+int(int(num)*float(price))
-          final=text.replace(nums[0],str(n1)).replace(nums[2],str(n2))
+          n1=int(nums[0])+int(num)
+          n2=int(nums[2])+int(float(price))
+          final=line.replace(nums[0],str(n1)).replace(nums[2],str(n2))
           js.localStorage.setItem("ss",js.localStorage.getItem("ss").replace(line, final))
     else:
       try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+" штук, "+name+", "+num+", расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
