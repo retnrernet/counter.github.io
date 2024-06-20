@@ -80,7 +80,7 @@
   from datetime import datetime;import js;from js import document, console,URL, Uint8Array, window, File, Object;from collections import Counter
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
-  try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('sewed').element.innerText = js.localStorage.getItem("sewed");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive")
+  try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive");Element('sewed').element.innerText = js.localStorage.getItem("sewed")
   except:pass
   try:
     Counter = Counter(js.localStorage.getItem("ss").split())
@@ -95,22 +95,7 @@
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
     operation= Element('operation').element.value
-    #try:
-    #  if izdelia+", "+operation in js.localStorage.getItem("ss"):
-    #    lines=js.localStorage.getItem("ss").splitlines()
-    #    for line in lines:
-    #      if line.startswith(izdelia+", "+operation):
-    #        text=text.replace(",","").replace(".0","").replace(".1","").replace(".2","").replace(".3","").replace(".4","").replace(".5","").replace(".6","").replace(".7","").replace(".8","").replace(".9","").split()
-    #        nums=[(c) for i,c in enumerate(text) if c.isdigit()]
-    #        n1=int(nums[0])+int(num)
-    #        n2=int(nums[2])+(int(num)+int(float(price)))
-    #        final=line.replace(nums[0],str(n1)).replace(nums[2],str(n2))
-    #        js.localStorage.setItem("ss",js.localStorage.getItem("ss").replace(line, final))
-    #  else:
-    #    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
-    #    except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
-    #except:
-    try:js.localStorage.setItem("sewed",str(int(js.localStorage.getItem("sewed")+int(num))))
+    try:js.localStorage.setItem("sewed",str(int(num)+int(js.localStorage.getItem("sewed")))))
     except:js.localStorage.setItem("sewed",num)
     Element('sewed').element.innerText = js.localStorage.getItem("sewed")
     try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
@@ -123,7 +108,7 @@
     except:js.localStorage.setItem("month", int(num)*float(price))
     Element('month').element.innerText = js.localStorage.getItem("month")
   def clean(*args, **kwargs):
-    js.localStorage.setItem('archive', js.localStorage.getItem('ss'));js.localStorage.removeItem('ss');js.localStorage.removeItem('month')
+    js.localStorage.setItem('archive', js.localStorage.getItem('ss'));js.localStorage.removeItem('ss');js.localStorage.removeItem('month');js.localStorage.removeItem('sewed')
     Element('archive').element.innerText = js.localStorage.getItem("archive")
   def down(*args, **kwargs):
     encoded_data = js.localStorage.getItem("ss").encode('utf-8')
