@@ -87,10 +87,15 @@
         for line in lines:
           if line.startswith(izdelia+", "+operation):
             text=line.replace(",","").replace(".0","")
+            print(text)
             nums=[(c) for i,c in enumerate(text) if c.isdigit()]
+            print(nums)
             n1=int(nums[0])+int(num)
+            print(n1)
             n2=int(nums[2])+int(float(price))
+            print(n2)
             final=line.replace(nums[0],str(n1)).replace(nums[2],str(n2))
+            print(final)
             js.localStorage.setItem("ss",js.localStorage.getItem("ss").replace(line, final))
       else:
         try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+" штук, "+name+", "+num+", расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
