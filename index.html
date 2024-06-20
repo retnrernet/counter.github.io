@@ -54,7 +54,7 @@
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button><br><br>
   <div>Ранее:</div><br>
   <div id="output"></div><br>
-  <div>Заработано за месяц:</div><br>
+  <div>Заработано за месяц:</div>
   <div id="month"></div><br
   <div>Всего заработано в рублях:</div><br>
   <div id="full"></div><br>
@@ -93,10 +93,10 @@
     #        final=line.replace(nums[0],str(n1)).replace(nums[2],str(n2))
     #        js.localStorage.setItem("ss",js.localStorage.getItem("ss").replace(line, final))
     #  else:
-    #    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+" штук, "+name+", "+num+", расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
+    #    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     #    except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+", расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     #except:
-    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+" штук, "+name+", "+num+", расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
+    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+", расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
     Element('output').element.innerText = js.localStorage.getItem("ss")
     try:js.localStorage.setItem("full", float(js.localStorage.getItem("full"))+(int(num)*float(price)))
