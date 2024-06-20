@@ -4,11 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"> 
-  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 </head>
 <body>
-  <div>Дата сегодня:<u><label id='time'></label></u></div><button id="clean" type="submit" pys-onClick="clean">Очистить базу операций</button><br>
+  <div>Дата сегодня:<u><label id='time'></label></u></div><button id="clean" type="submit" pys-onClick="clean">Закрыть за месяц</button><br>
   <div>Введите название изделия и тип операции или выберите из списка</div>
   <select name="izdelia" id="izdelia">
     <option value="Комбинезон">Комбинезон</option>
@@ -55,6 +54,8 @@
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button><br><br>
   <div>Ранее:</div><br>
   <div id="output"></div><br>
+  <div>Заработано за месяц:</div><br>
+  <div id="month"></div><br
   <div>Всего заработано в рублях:</div><br>
   <div id="full"></div><br>
   <button id="download" type="submit" pys-onClick="down">Скачать базу</button><br>
@@ -63,11 +64,13 @@
   <input type="text" id="text"/><br>
   <button id="ocrbtn" type="submit" pys-onClick="ocr">Сравнить</button><br>
   <div id="ocr"></div><br>
+  <div>Архив:</div>
+  <div id="archive"></div><br>
 <py-script>
-  from datetime import datetime;import js,pyodide,asyncio;from js import document, console,URL, Uint8Array, window, File, Object;from pyodide import create_proxy
+  from datetime import datetime;import js;from js import document, console,URL, Uint8Array, window, File, Object
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
-  try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full")
+  try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive")
   except:pass
   def ocr(*args, **kwargs):
     if js.localStorage.getItem("ss").split() in Element('text').element.value.split():Element('ocr').element.innerText = "найдено совпадение"
@@ -84,8 +87,12 @@
     try:js.localStorage.setItem("full", float(js.localStorage.getItem("full"))+(int(num)*float(price)))
     except:js.localStorage.setItem("full", int(num)*float(price))
     Element('full').element.innerText = js.localStorage.getItem("full")
+    try:js.localStorage.setItem("month", float(js.localStorage.getItem("month"))+(int(num)*float(price)))
+    except:js.localStorage.setItem("month", int(num)*float(price))
+    Element('month').element.innerText = js.localStorage.getItem("month")
   def clean(*args, **kwargs):
-    js.localStorage.removeItem('ss');js.localStorage.removeItem('full')
+    js.localStorage.setItem('archive', js.localStorage.getItem('ss'));js.localStorage.removeItem('ss');js.localStorage.removeItem('month')
+    Element('archive').element.innerText = js.localStorage.getItem("archive")
   def down(*args, **kwargs):
     encoded_data = js.localStorage.getItem("ss").encode('utf-8')
     my_stream = io.BytesIO(encoded_data)
