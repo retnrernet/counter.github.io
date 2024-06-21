@@ -93,7 +93,7 @@
   except:pass
   def ocr(*args, **kwargs):
     all=js.localStorage.getItem("ss").splitlines()
-    if str(all).split() in Element('text').element.value:Element('ocr').element.innerText = "найдено совпадение. Самое большое число на листе: "+Element('text').element.value.split().sort()[-1]
+    if str(all).split() in Element('text').element.value:Element('ocr').element.innerText = "найдено совпадение. Самое большое число на листе: "+Element('text').element.value.splitlines().sort()[-1]
     else: Element('ocr').element.innerText = "не найдено совпадение "+Element('text').element.value.split().sort()[-1]
   def my_function(*args, **kwargs):
     name = Element('name').element.value
