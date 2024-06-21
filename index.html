@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"> 
@@ -77,7 +78,8 @@
   <div>Вставьте распознанный текст:</div>
   <input type="text" id="text"/><br>
   <button id="ocrbtn" type="submit" pys-onClick="ocr">Сравнить</button><br>
-  <div id="ocr"></div><br>
+  <div id="ocr"></div>
+  <div id="allsewed"></div><br>
   <div>Архив:</div>
   <div id="archive"></div><br>
   <button id="download" type="submit" pys-onClick="down">Скачать базу</button>
@@ -93,8 +95,14 @@
   except:pass
   def ocr(*args, **kwargs):
     all=js.localStorage.getItem("ss").splitlines()
-    if str(all).split() in Element('text').element.value:Element('ocr').element.innerText = "найдено совпадение. Самое большое число на листе: "+Element('text').element.value.splitlines().sort()[-1]
-    else: Element('ocr').element.innerText = "не найдено совпадение "+Element('text').element.value.split().sort()[-1]
+    for i in str(all).split(","):
+      if i in Element('text').element.value:
+        Element('ocr').element.innerText = "Совпадение найдено: "+i
+      else: Element('ocr').element.innerText = "Совпадения не найдены"
+    nums=[(c) for i,c in enumerate(Element('text').element.value.split()) if c.isdigit()]
+    print(js.localStorage.getItem("sewed")+max(nums))
+    if int(js.localStorage.getItem("sewed"))==max(nums):Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums) +", что соответсвует действительности"
+    else:Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums) +", что не соответсвует заявленному вами количеству"
   def my_function(*args, **kwargs):
     name = Element('name').element.value
     num = Element('num').element.value
