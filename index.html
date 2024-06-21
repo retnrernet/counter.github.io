@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"> 
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <style>.hidden {display: none;}</style>
 </head>
 <body>
   <div>Дата сегодня:<u><label id='time'></label></u></div><button id="clean" type="submit" pys-onClick="clean">Закрыть месяц</button><br>
@@ -59,8 +60,8 @@
   <div>Введите стоимость за единицу (в формате 0.5 или 5)</div>
   <input type="price" id="price"/>
   <button id="submit-button" type="submit" pys-onClick="my_function">OK</button><br><br>
-  <div>Ранее:</div><br>
-  <div id="output"></div><br>
+  <button id="showMore" onclick="showMore()">Ранее</button>
+  <div class="hidden" id="output"></div>
   <table>
     <tr>
       <th>Заработок/месяц</th>
@@ -80,9 +81,11 @@
   <button id="ocrbtn" type="submit" pys-onClick="ocr">Сравнить</button><br>
   <div id="ocr"></div>
   <div id="allsewed"></div><br>
-  <div>Архив:</div>
-  <div id="archive"></div><br>
+  <button id="showMore1" onclick="showMore1()">Архив</button><br>
+  <div class="hidden" id="archive"></div><br><br>
   <button id="download" type="submit" pys-onClick="down">Скачать базу</button>
+<script>function showMore() {const theText = document.getElementById("output");if (theText.style.display === "none") {theText.style.display = "block";} else {theText.style.display = "none";}}</script>
+<script>function showMore1() {const theText = document.getElementById("archive");if (theText.style.display === "none") {theText.style.display = "block";} else {theText.style.display = "none";}}</script>
 <py-script>
   from datetime import datetime;import js;from js import document, console,URL, Uint8Array, window, File, Object;from collections import Counter
   now = datetime.now()
