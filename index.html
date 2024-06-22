@@ -110,23 +110,23 @@
     if int(js.localStorage.getItem("sewed"))==max(nums):Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums) +", что соответсвует действительности"
     else:Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums) +", что не соответсвует заявленному вами количеству"
   def my_function(*args, **kwargs):
-    if Element('name').element.value==None or NoneType or "":operation=Element('operation').element.value
+    if Element('name').element.value==None or "":operation=Element('operation').element.value
     else:
       name = Element('name').element.value
       operation="Иное"
-      if js.localStorage.getItem("new")==None or NoneType or "":
+      if js.localStorage.getItem("new")==None or "":
         js.localStorage.setItem("new",Element('name').element.value)
         Element('new').element.innerText=Element('name').element.value
       else:
-        if js.localStorage.getItem("new1")==None or NoneType or "":
+        if js.localStorage.getItem("new1")==None or "":
           js.localStorage.setItem("new1",Element('name').element.value)
           Element('new1').element.innerText=Element('name').element.value
         else:
-          if js.localStorage.getItem("new2")==None or NoneType or "":
+          if js.localStorage.getItem("new2")==None or "":
             js.localStorage.setItem("new2",Element('name').element.value)
             Element('new2').element.innerText=Element('name').element.value
           else:
-            if js.localStorage.getItem("new3")==None or NoneType or "":
+            if js.localStorage.getItem("new3")==None or "":
               js.localStorage.setItem("new3",Element('name').element.value)
               Element('new3').element.innerText=Element('name').element.value
             else:pass
