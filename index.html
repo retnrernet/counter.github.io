@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
-  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"> 
-  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
   <style>.hidden {display: none;}</style>
 </head>
 <body>
@@ -90,7 +89,7 @@
 <script>function showMore() {const theText = document.getElementById("output");if (theText.style.display === "none") {theText.style.display = "block";} else {theText.style.display = "none";}}</script>
 <script>function showMore1() {const theText = document.getElementById("archive");if (theText.style.display === "none") {theText.style.display = "block";} else {theText.style.display = "none";}}</script>
 <py-script>
-  from datetime import datetime;import js;from js import document, console,URL, Uint8Array, window, File, Object;from collections import Counter
+  from datetime import datetime;import js;from js import document, console,URL, Uint8Array, File, Object;from collections import Counter
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
   try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive");Element('sewed').element.innerText = js.localStorage.getItem("sewed");Element('new').element.innerText = js.localStorage.getItem("new");Element('new1').element.innerText = js.localStorage.getItem("new1");Element('new2').element.innerText = js.localStorage.getItem("new2");Element('new3').element.innerText = js.localStorage.getItem("new3")
