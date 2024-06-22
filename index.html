@@ -52,7 +52,10 @@
     <option value="35. Притачать боковую часть">35. Притачать боковую часть</option>
     <option value="40. Поставить П-образные закрепки">40. Поставить П-образные закрепки</option>
     <option value="49. Нарезать составник">40. Нарезать составник</option>
-    <option value="Иное">Иное</option>
+    <option value="new"> </option>
+    <option value="new1"> </option>
+    <option value="new2"> </option>
+    <option value="new3"> </option>
   </select>
   <input type="name" id="name"/>
   <div>Введите количество</div>
@@ -90,7 +93,7 @@
   from datetime import datetime;import js;from js import document, console,URL, Uint8Array, window, File, Object;from collections import Counter
   now = datetime.now()
   Element('time').element.innerText = now.strftime("%d/%m/%Y")
-  try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive");Element('sewed').element.innerText = js.localStorage.getItem("sewed")
+  try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive");Element('sewed').element.innerText = js.localStorage.getItem("sewed");Element('new').element.innerText = js.localStorage.getItem("new");Element('new1').element.innerText = js.localStorage.getItem("new1");Element('new2').element.innerText = js.localStorage.getItem("new2");Element('new3').element.innerText = js.localStorage.getItem("new3")
   except:pass
   try:
     Counter = Counter(js.localStorage.getItem("ss").split())
@@ -107,11 +110,29 @@
     if int(js.localStorage.getItem("sewed"))==max(nums):Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums) +", что соответсвует действительности"
     else:Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums) +", что не соответсвует заявленному вами количеству"
   def my_function(*args, **kwargs):
-    name = Element('name').element.value
+    if Element('name').element.value==None or NoneType or "":operation=Element('operation').element.value
+    else:
+      name = Element('name').element.value
+      operation="Иное"
+      if js.localStorage.getItem("new")==None or NoneType or "":
+        js.localStorage.setItem("new",Element('name').element.value)
+        Element('new').element.innerText=Element('name').element.value
+      else:
+        if js.localStorage.getItem("new1")==None or NoneType or "":
+          js.localStorage.setItem("new1",Element('name').element.value)
+          Element('new1').element.innerText=Element('name').element.value
+        else:
+          if js.localStorage.getItem("new2")==None or NoneType or "":
+            js.localStorage.setItem("new2",Element('name').element.value)
+            Element('new2').element.innerText=Element('name').element.value
+          else:
+            if js.localStorage.getItem("new3")==None or NoneType or "":
+              js.localStorage.setItem("new3",Element('name').element.value)
+              Element('new3').element.innerText=Element('name').element.value
+            else:pass
     num = Element('num').element.value
     price = Element('price').element.value
     izdelia= Element('izdelia').element.value
-    operation= Element('operation').element.value
     try:js.localStorage.setItem("sewed",str(int(num)+int(js.localStorage.getItem("sewed"))))
     except:js.localStorage.setItem("sewed",num)
     Element('sewed').element.innerText = js.localStorage.getItem("sewed")
