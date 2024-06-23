@@ -106,7 +106,7 @@
         for t in range(57):
           if str(t)+"."==str(i): Element('ocr').element.innerText="Совпадает операция: "+str(t)
       else:pass
-    nums=[(c) for i,c in enumerate(Element('text').element.value.split()) if c.isdigit())] 
+    nums=[(c) for i,c in enumerate(Element('text').element.value.split()) if c.isdigit()] 
     if int(js.localStorage.getItem("sewed"))==max(nums, key=int):Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums, key=int) +", что соответсвует действительности"
     else:Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums, key=int) +", что не соответсвует заявленному вами количеству"
   def my_function(*args, **kwargs):
