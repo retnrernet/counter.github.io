@@ -101,14 +101,14 @@
   except:pass
   def ocr(*args, **kwargs):
     all=js.localStorage.getItem("ss").splitlines()
-    for i in str(all).split(","):
-      if i in Element('text').element.value:
-        Element('ocr').element.innerText = "Совпадение найдено: "+i
-      else: Element('ocr').element.innerText = "Совпадения не найдены"
-    nums=[(c) for i,c in enumerate(Element('text').element.value.split()) if c.isdigit()]
-    print(js.localStorage.getItem("sewed")+max(nums))
-    if int(js.localStorage.getItem("sewed"))==max(nums):Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums) +", что соответсвует действительности"
-    else:Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums) +", что не соответсвует заявленному вами количеству"
+    for i in all.replace(",", "").split():
+      if i in Element('text').element.value.split():
+        for t in range(57):
+          if str(t)+"."==str(i): Element('ocr').element.innerText="Совпадает операция: "+str(t)
+			else:pass
+    nums=[(c) for i,c in enumerate(Element('text').element.value.split()) if c.isdigit())
+    if int(js.localStorage.getItem("sewed"))==max(nums, key=int):Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums, key=int) +", что соответсвует действительности"
+    else:Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums, key=int) +", что не соответсвует заявленному вами количеству"
   def my_function(*args, **kwargs):
     if Element('name').element.value==None or "":operation=Element('operation').element.value
     else:
