@@ -103,7 +103,7 @@
         for t in range(57):
           if str(t)+"."==str(i): Element('ocr').element.innerText="Совпадает операция: "+str(t)
       else:pass
-    cha=re.findall("[1-9]\s[0-9]*",Element('text').element.value);text=str(Element('text').element.value).replace(str(cha),str(cha).replace(" ", ""))
+    cha=re.findall("[1-9]\s[0-9]*",Element('text').element.value);text=str(Element('text').element.value).replace(str(max(cha, key=int),str(cha).replace(" ", ""))
     nums=[(c) for i,c in enumerate(text.split()) if c.isdigit()]
     if int(js.localStorage.getItem("sewed"))==int(max(nums, key=int)):Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums, key=int) +", что соответсвует действительности"
     else:Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums, key=int) +", что не соответсвует заявленному вами количеству"
