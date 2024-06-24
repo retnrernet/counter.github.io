@@ -101,10 +101,9 @@
     for i in str(all).replace(",", "").split():
       if i in Element('text').element.value.split():
         for t in range(57):
-          if str(t)+"."==str(i):
-            if Element('ocr').element.value==None or "":Element('ocr').element.innerText="Совпадает операция: "+str(t)
-            else:Element('ocr').element.innerText=Element('ocr').element.value+"\nСовпадает операция: "+str(t)
-          else:pass
+          Element('ocr').element.innerText=[(t) for i,t in str(i) if str(t)+"."==str(i)]
+          #if str(t)+"."==str(i):
+            #Element('ocr').element.innerText="Совпадают операции: "+str(t)
       else:pass
     #cha=re.findall("[1-9]\s[0-9]*",Element('text').element.value)
     #cha=str(cha).replace(" ","")
