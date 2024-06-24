@@ -98,12 +98,7 @@
   except:pass
   def ocr(*args, **kwargs):
     all=js.localStorage.getItem("ss").splitlines()
-    for i in str(all).replace(",", "").split():
-      if i in Element('text').element.value:
-        Element('ocr').element.innerText=[t for t in range(57) if str(t)+"."==str(i)]
-          #if str(t)+"."==str(i):
-            #Element('ocr').element.innerText="Совпадают операции: "+str(t)
-      else:pass
+    for i in str(all).replace(",", "").split():Element('ocr').element.innerText=[t for t in range(57) if str(t)+"."==str(i)]
     #cha=re.findall("[1-9]\s[0-9]*",Element('text').element.value)
     #cha=str(cha).replace(" ","")
     #cha=cha.split()
