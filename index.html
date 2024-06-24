@@ -100,8 +100,7 @@
     all=js.localStorage.getItem("ss").splitlines()
     for i in str(all).replace(",", "").split():
       if i in Element('text').element.value.split():
-        #for t in range(57):
-        Element('ocr').element.innerText=[(t) for t in range(57) if str(t)+"."==str(i)]
+        Element('ocr').element.innerText=[t for t in range(57) if str(t)+"."==str(i)]
           #if str(t)+"."==str(i):
             #Element('ocr').element.innerText="Совпадают операции: "+str(t)
       else:pass
