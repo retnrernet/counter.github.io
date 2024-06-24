@@ -102,7 +102,7 @@
       if i in Element('text').element.value.split():
         for t in range(57):
           if str(t)+"."==str(i):
-            if Element('ocr').element.value=None or "":Element('ocr').element.innerText="Совпадает операция: "+str(t)
+            if Element('ocr').element.value==None or "":Element('ocr').element.innerText="Совпадает операция: "+str(t)
             else:Element('ocr').element.innerText=Element('ocr').element.value+"\nСовпадает операция: "+str(t)
           else:pass
       else:pass
