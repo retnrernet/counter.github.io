@@ -97,11 +97,8 @@
   try:Counter = Counter(js.localStorage.getItem("ss").split());Element('top').element.innerText = Counter.most_common(2)
   except:pass
   def ocr(*args, **kwargs):
-    #all=js.localStorage.getItem("ss").splitlines()
     all=re.findall("[0-9]*\.\s", Element('text').element.value)
-    Element('ocr').element.innerText=[(t) for t in range(all) if str(t) in str(all)]
-    #for i in str(all).replace(",", "").split():
-    #Element('ocr').element.innerText=[(t) for t in range(57) if str(t)+"."==str(i)]
+    Element('ocr').element.innerText="Найдены схожие операции: "[(t) for t in all if str(t) in str(all)]
     #cha=re.findall("[1-9]\s[0-9]*",Element('text').element.value)
     #cha=str(cha).replace(" ","")
     #cha=cha.split()
