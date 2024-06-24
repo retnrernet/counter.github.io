@@ -98,7 +98,7 @@
   except:pass
   def ocr(*args, **kwargs):
     all=re.findall("[0-9]*\.\s", Element('text').element.value)
-    Element('ocr').element.innerText="Найдены схожие операции: "[(t) for t in all if str(t) in str(all)]
+    Element('ocr').element.innerText="Найдены схожие операции:"+[(t) for t in all if str(t) in str(all)]
     #cha=re.findall("[1-9]\s[0-9]*",Element('text').element.value)
     #cha=str(cha).replace(" ","")
     #cha=cha.split()
