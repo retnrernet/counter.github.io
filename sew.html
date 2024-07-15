@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <style>.hidden {display: none;}</style>
+</head>
+<body>
+  <div>Дата сегодня:<u><label id='time'></label></u></div><button id="clean" type="submit" pys-onClick="clean">Закрыть месяц</button><br>
+  <div>Введите название изделия и тип операции или выберите из списка</div>
+  <select name="izdelia" id="izdelia">
+    <option value="Леггинсы">Леггинсы</option>
+    <option value="Юбка">Юбка</option>
+    <option value="Лосины">Лосины</option>
+    <option value="Комбинезон">Комбинезон</option>
+    <option value="Платье">Платье</option>
+    <option value="Рашгард">Рашгард</option>
+    <option value="Водолазка">Водолазка</option>
+    <option value="Шорты">Шорты</option>
+    <option value="Футболка">Футболка</option>
+    <option value="Топ">Топ</option>
+    <option value="Велосипедка">Велосипедка</option>
+    <option value="Купальник">Купальник</option>
+    <option value="Брюки">Брюки</option>
+    <option value="Бюстгалтер">Бюстгалтер</option>
+    <option value="Трусы">Трусы</option>
+    <option value="Сарафан">Сарафан</option>
+    <option value="Боди">Боди</option>
+    <option value="Иное">Иное</option>
+  </select>
+  <select name="operation" id="operation">
+    <option id="new"></option>
+    <option id="new1"></option>
+    <option id="new2"></option>
+    <option id="new3"></option>
+  </select>
+  <input type="name" id="name"/>
+  <div>Введите количество</div>
+  <input type="num" id="num"/>
+  <div>Введите стоимость за единицу (в формате 0.5 или 5)</div>
+  <input type="price" id="price"/>
+  <button id="submit-button" type="submit" pys-onClick="my_function">OK</button><br><br>
+  <button id="showMore" onclick="showMore()">Ранее</button>
+  <div class="hidden" id="output"></div>
+  <table>
+    <tr>
+      <th>Заработок/месяц</th>
+      <th>Заработок/всего</th>
+      <th>Сшито/месяц</th>
+      <th>ТОП операция</th>
+    </tr>
+    <tr>
+      <td id="month"></td>
+      <td id="full"></td>
+      <td id="sewed"></td>
+      <td id="top"></td>
+    </tr>
+  </table>
+  <button id="showMore1" onclick="showMore1()">Архив</button><br>
+  <div class="hidden" id="archive"></div><br><br>
+  <button id="download" type="submit" pys-onClick="down">Скачать базу</button>
+  <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=13VN6QJOHVF.240714&" width="330" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+<script>function showMore() {const theText = document.getElementById("output");if (theText.style.display === "none") {theText.style.display = "block";} else {theText.style.display = "none";}}</script>
+<script>function showMore1() {const theText = document.getElementById("archive");if (theText.style.display === "none") {theText.style.display = "block";} else {theText.style.display = "none";}}</script>
+<py-script>
+  from datetime import datetime;import js, re;from js import document, console,URL, Uint8Array, File, Object;from collections import Counter;now = datetime.now()
+  Element('time').element.innerText = now.strftime("%d/%m/%Y")
+  try:Element('output').element.innerText = js.localStorage.getItem("ss");Element('full').element.innerText = js.localStorage.getItem("full");Element('month').element.innerText = js.localStorage.getItem("month");Element('archive').element.innerText = js.localStorage.getItem("archive");Element('sewed').element.innerText = js.localStorage.getItem("sewed");Element('new').element.innerText = js.localStorage.getItem("new");Element('new1').element.innerText = js.localStorage.getItem("new1");Element('new2').element.innerText = js.localStorage.getItem("new2");Element('new3').element.innerText = js.localStorage.getItem("new3")
+  except:pass
+  try:Counter = Counter(js.localStorage.getItem("ss").split());Element('top').element.innerText = Counter.most_common(2)
+  except:pass
+  def ocr(*args, **kwargs):
+    all=re.findall("[0-9]*\.\s", Element('text').element.value)
+    Element('ocr').element.innerText="Найдены схожие операции:"+str([(t) for t in all if str(t) in str(all)])
+    #cha=re.findall("[1-9]\s[0-9]*",Element('text').element.value)
+    #cha=str(cha).replace(" ","")
+    #cha=cha.split()
+    #cha=str(max(cha, key=int))
+    #text=Element('text').element.value.replace(Element('text').element.value,cha)
+    #nums=[(c) for i,c in enumerate(text.split()) if c.isdigit()]
+    #if int(js.localStorage.getItem("sewed"))==int(max(nums, key=int)):Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums, key=int) +", что соответсвует действительности"
+    #else:Element('allsewed').element.innerText = "Всего сшито по листу: "+ max(nums, key=int) +", что не соответсвует заявленному вами количеству"
+  def my_function(*args, **kwargs):
+    if Element('name').element.value==None or "":operation=Element('operation').element.value;name=""
+    else:
+      name = Element('name').element.value;operation="Иное"
+      if js.localStorage.getItem("new")==None or "":js.localStorage.setItem("new",Element('name').element.value);Element('new').element.innerText=Element('name').element.value
+      else:
+        if js.localStorage.getItem("new1")==None or "":js.localStorage.setItem("new1",Element('name').element.value);Element('new1').element.innerText=Element('name').element.value
+        else:
+          if js.localStorage.getItem("new2")==None or "":js.localStorage.setItem("new2",Element('name').element.value);Element('new2').element.innerText=Element('name').element.value
+          else:
+            if js.localStorage.getItem("new3")==None or "":js.localStorage.setItem("new3",Element('name').element.value);Element('new3').element.innerText=Element('name').element.value
+            else:operation=Element('operation').element.value
+    num = Element('num').element.value
+    price = Element('price').element.value
+    izdelia= Element('izdelia').element.value
+    try:js.localStorage.setItem("sewed",str(int(num)+int(js.localStorage.getItem("sewed"))))
+    except:js.localStorage.setItem("sewed",num)
+    Element('sewed').element.innerText = js.localStorage.getItem("sewed")
+    try:js.localStorage.setItem("ss", js.localStorage.getItem("ss")+"\n"+izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
+    except:js.localStorage.setItem("ss",izdelia+", "+operation+", "+name+", "+num+" штук, расценка "+price+", "+str(int(num)*float(price))+" руб. итоговая выручка, дата"+now.strftime("%d/%m/%Y"))
+    Element('output').element.innerText = js.localStorage.getItem("ss")
+    try:js.localStorage.setItem("full", float(js.localStorage.getItem("full"))+(int(num)*float(price)))
+    except:js.localStorage.setItem("full", int(num)*float(price))
+    Element('full').element.innerText = js.localStorage.getItem("full")
+    try:js.localStorage.setItem("month", float(js.localStorage.getItem("month"))+(int(num)*float(price)))
+    except:js.localStorage.setItem("month", int(num)*float(price))
+    Element('month').element.innerText = js.localStorage.getItem("month")
+  def clean(*args, **kwargs):js.localStorage.setItem('archive', js.localStorage.getItem('ss'));js.localStorage.removeItem('ss');js.localStorage.removeItem('month');js.localStorage.removeItem('sewed');Element('archive').element.innerText = js.localStorage.getItem("archive")
+  def down(*args, **kwargs):encoded_data = js.localStorage.getItem("ss").encode('utf-8');my_stream = io.BytesIO(encoded_data);js_array = Uint8Array.new(len(encoded_data));js_array.assign(my_stream.getbuffer());file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"});url = URL.createObjectURL(file);hidden_link = document.createElement("a");hidden_link.setAttribute("download", "file.txt");hidden_link.setAttribute("href", url);hidden_link.click()
+</py-script>
+  </body>
+</html>
