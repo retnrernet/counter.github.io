@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+  <div>Введите сюда текст взятый с полной версии сайта Booking чтобы преобразовать в GPX файл для навигации:</div>
+  <input type="text" id="text"/>
+  <button id="out" type="submit" pys-onClick="fun">Преобразовать</button><br>
+  <div id="outtext"></div>
+  <button id="download" type="submit" pys-onClick="down">Скачать GPX</button>
+  <div>Инструкция: зайдите с компьютера на сайт Booking.com, правой кнопкой мыши нажмите на "просмотреть код", перейдите в раздел "Network" или Сеть, введите на самом сайте booking нужный город и дату проживания, откройте режим карты и в правом окне "просмотра кода" появится строчка "graphql", нажав на которую и перейдя во вкладку Responce вы увидите список всех отелей. Этот список нужно скопировать и вставить выше. То, что выдаст программа далее будет являться списком точек который надо вставить в файл GPX либо в программу навигации.</div>
+<py-script>
+  def fun(*args, **kwargs):
+    d=Element('text').element.value
+    long=[(i) for i in d.split(",") if "longitude" in i]
+    long=[(i.replace('"longitude": ','').replace(' ','').replace(',','').replace("}","").replace(']','').replace('"location":{',"")) for i in long]
+    lat=[(i) for i in d.split(",") if "latitude" in i]
+    lat=[(i.replace('"latitude": ','').replace(' ','').replace(',','').replace("}","").replace("{","").replace(']','').replace('"location":',"")) for i in lat]
+    try:
+      for i in range(200):out='<wpt lat="'+lat[i]+'" lon="'+long[i]+'"><name>отель</name></wpt>'
+    except:pass
+  def down(*args, **kwargs):my_stream = io.BytesIO(out);js_array = Uint8Array.new(len(out));js_array.assign(my_stream.getbuffer());file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"});url = URL.createObjectURL(file);hidden_link = document.createElement("a");hidden_link.setAttribute("download", "file.txt");hidden_link.setAttribute("href", url);hidden_link.click()
+</py-script>
+  </body>
+</html>
