@@ -27,8 +27,8 @@
       lat=[(i.replace('"latitude": ','').replace(' ','').replace(',','').replace("}","").replace("{","").replace(']','').replace('"location":',"")) for i in lat]
       try:
         for n in range(200):
-          if n==0:js.localStorage.setItem("gpx", lat[n]+", "+long[n]+"\n")
-          else:js.localStorage.setItem("gpx",str(js.localStorage.getItem("gpx"))+lat[n]+", "+long[n]+"\n")
+          if n==0:js.localStorage.setItem("gpx",'&lt'+'wpt lat="'+lat[n]+'" lon="'+long[n]+'">'+'&lt'+'name>отель'+'>'+'&lt'+'/name>'+'&lt'+'/wpt>'+"\n")
+          else:js.localStorage.setItem("gpx",str(js.localStorage.getItem("gpx"))+'&lt'+'wpt lat="'+lat[n]+'" lon="'+long[n]+'">'+'&lt'+'name>отель'+'>'+'&lt'+'/name>'+'&lt'+'/wpt>'+"\n")
       except:pass
       Element('outtext').element.innerText=js.localStorage.getItem("gpx")
   def down(*args, **kwargs):encoded_data = js.localStorage.getItem("gpx").encode('utf-8');my_stream = io.BytesIO(encoded_data);js_array = Uint8Array.new(len(encoded_data));js_array.assign(my_stream.getbuffer());file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"});url = URL.createObjectURL(file);hidden_link = document.createElement("a");hidden_link.setAttribute("download", "file.txt");hidden_link.setAttribute("href", url);hidden_link.click()
