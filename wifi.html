@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+  <div>Введите сюда текст взятый с полной версии сайта wifispc.com чтобы преобразовать бесплатные точки wi-fi в GPX файл для навигации:</div>
+  <input type="text" id="text"/>
+  <button id="out" type="submit" pys-onClick="fun">Преобразовать</button><br>
+  <div id="outtext"></div>
+  <button id="download" type="submit" pys-onClick="down">Скачать GPX</button>
+  <div>Инструкция: зайдите с компьютера на сайт wifispc.com, правой кнопкой мыши нажмите на "просмотреть код", перейдите в раздел "Network" или Сеть, введите на самом сайте wifispc нужный город где вам нужен будет открытый wi-fi, нажмите на карту на сайте и в правом окне "просмотра кода" появится строчка "markers", нажав на которую и перейдя во вкладку Responce вы увидите список всех точек. Этот список нужно скопировать и вставить выше. То, что выдаст программа далее будет являться списком точек который надо вставить в файл GPX либо в программу навигации.</div>
+  <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=13VN6QJOHVF.240714&" width="330" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+<py-script>
+  import js;from js import document, console,URL, Uint8Array, File, Object
+  def fun(*args, **kwargs):
+    try:js.localStorage.removeItem('gpx')
+    except:pass
+    else:
+      d=Element('text').element.value
+      long=[(i) for i in d.split(",") if "ln" in i]
+      long=[(i.replace('"ln": ','').replace(' ','').replace(',','').replace("}","").replace(']','').replace('"',"")) for i in long]
+      lat=[(i) for i in d.split(",") if "lt" in i]
+      lat=[(i.replace('"lt": ','').replace(' ','').replace(',','').replace("}","").replace("{","").replace(']','').replace('"',"")) for i in lat]
+      try:
+        for n in range(200):
+          if n==0:js.localStorage.setItem("gpx",'&lt'+'wpt lat="'+lat[n]+'" lon="'+long[n]+'">'+'&lt'+'name>wi-fi'+'>'+'&lt'+'/name>'+'&lt'+'/wpt>'+"\n")
+          else:js.localStorage.setItem("gpx",str(js.localStorage.getItem("gpx"))+'&lt'+'wpt lat="'+lat[n]+'" lon="'+long[n]+'">'+'&lt'+'name>wi-fi'+'>'+'&lt'+'/name>'+'&lt'+'/wpt>'+"\n")
+      except:pass
+      Element('outtext').element.innerText=js.localStorage.getItem("gpx")
+  def down(*args, **kwargs):encoded_data = js.localStorage.getItem("gpx").encode('utf-8');my_stream = io.BytesIO(encoded_data);js_array = Uint8Array.new(len(encoded_data));js_array.assign(my_stream.getbuffer());file = File.new([js_array], "unused_file_name.gpx", {type: "text/plain"});url = URL.createObjectURL(file);hidden_link = document.createElement("a");hidden_link.setAttribute("download", "file.gpx");hidden_link.setAttribute("href", url);hidden_link.click()
+</py-script>
+  </body>
+</html>
