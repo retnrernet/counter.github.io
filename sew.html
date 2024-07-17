@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
   <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <!-- Yandex.RTB -->
+  <script>window.yaContextCb=window.yaContextCb||[]</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
   <style>.hidden {display: none;}</style>
 </head>
 <body>
@@ -62,6 +65,9 @@
   <button id="showMore1" onclick="showMore1()">Архив</button><br>
   <div class="hidden" id="archive"></div><br><br>
   <button id="download" type="submit" pys-onClick="down">Скачать базу</button>
+  <!-- Yandex.RTB R-A-10309441-1 -->
+  <div id="yandex_rtb_R-A-10309441-1"></div>
+  <script>window.yaContextCb.push(() => {Ya.Context.AdvManager.render({"blockId": "R-A-10309441-1","renderTo": "yandex_rtb_R-A-10309441-1"})})</script> 
   <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=13VN6QJOHVF.240714&" width="330" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
 <script>function showMore() {const theText = document.getElementById("output");if (theText.style.display === "none") {theText.style.display = "block";} else {theText.style.display = "none";}}</script>
 <script>function showMore1() {const theText = document.getElementById("archive");if (theText.style.display === "none") {theText.style.display = "block";} else {theText.style.display = "none";}}</script>
