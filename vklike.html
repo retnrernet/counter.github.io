@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+  <div>Обмен лайками и подписками ВКонтакте бесплатно и без регистрации</div>
+  <div>Введите ссылку на ваш пост/страницу/паблик:</div>
+  <input type="text" id="text"/>
+  <div>Выполните лайк/подписку:</div>
+  <iframe id="frm" src="https://vk.com/id226554909" width="410" height="600" frameborder="0" allowtransparency="true" scrolling="yes"></iframe>
+  <button id="out" type="submit" pys-onClick="fun">Готово</button><br>
+  <div id="outtext"></div>
+  <div>Инструкция: введите ссылку на то,что нужно лайкнуть/подписаться и выполните чужое задание сами. Ваша ссылка добавится в очередь. Если никто не выполнил ваше задание,значит желающих накрутить сейчас нет. Попробуйте позже. </div>
+  <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=13VN6QJOHVF.240714&" width="330" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+<py-script>
+  import js;from js import document, console,URL, Uint8Array, File, Object
+  #req=axios.get('https://raw.githubusercontent.com/retnrernet/counter.github.io/main/vkbot.txt')
+  #Element('frm').element("scr")==req
+  def fun(*args, **kwargs):
+    try:js.localStorage.removeItem('gpx')
+    except:pass
+    else:
+      d=Element('text').element.value
+      long=[(i) for i in d.split(",") if "longitude" in i]
+      long=[(i.replace('"longitude": ','').replace(' ','').replace(',','').replace("}","").replace(']','').replace('"location":{',"")) for i in long]
+      lat=[(i) for i in d.split(",") if "latitude" in i]
+      lat=[(i.replace('"latitude": ','').replace(' ','').replace(',','').replace("}","").replace("{","").replace(']','').replace('"location":',"")) for i in lat]
+      try:
+        for n in range(200):
+          if n==0:js.localStorage.setItem("gpx",'&lt'+'wpt lat="'+lat[n]+'" lon="'+long[n]+'">'+'&lt'+'name>отель'+'>'+'&lt'+'/name>'+'&lt'+'/wpt>'+"\n")
+          else:js.localStorage.setItem("gpx",str(js.localStorage.getItem("gpx"))+'&lt'+'wpt lat="'+lat[n]+'" lon="'+long[n]+'">'+'&lt'+'name>отель'+'>'+'&lt'+'/name>'+'&lt'+'/wpt>'+"\n")
+      except:pass
+      Element('outtext').element.innerText=js.localStorage.getItem("gpx")
+  def down(*args, **kwargs):encoded_data = js.localStorage.getItem("gpx").encode('utf-8');my_stream = io.BytesIO(encoded_data);js_array = Uint8Array.new(len(encoded_data));js_array.assign(my_stream.getbuffer());file = File.new([js_array], "unused_file_name.gpx", {type: "text/plain"});url = URL.createObjectURL(file);hidden_link = document.createElement("a");hidden_link.setAttribute("download", "file.gpx");hidden_link.setAttribute("href", url);hidden_link.click()
+</py-script>
+  </body>
+</html>
